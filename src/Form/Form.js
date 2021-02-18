@@ -5,16 +5,34 @@ class Form extends Component {
   constructor() {
     super();
     this.state = {
-      id: Date.now(),
       name: '',
       date: '',
       time: '',
-      numOfGuest: '',
+      number: '',
     }
   }
 
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
+  }
+
+  clearInputs = () => {
+    this.setState({
+      name: '',
+      date: '',
+      time: '',
+      number: ''
+    })
+  }
+
+  submitReservation = event => {
+    event.preventDefault();
+    const newReservation = {
+      id: Date.now(),
+      ...this.state
+    }
+    this.props.addReservation(newReservation)
+    this.clearInputs()
   }
 
   render() {
@@ -41,11 +59,11 @@ class Form extends Component {
         />
         <input 
           type='number'
-          name='numOfGuest'
-          value={this.state.numOfGuest}
+          name='number'
+          value={this.state.number}
           onChange={event => this.handleChange(event)}
         />
-        <button>Make Reservation</button>
+        <button onClick={event => this.submitReservation(event)}>Make Reservation</button>
       </form>
     )
   }

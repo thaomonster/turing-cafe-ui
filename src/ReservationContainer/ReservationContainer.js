@@ -10,7 +10,7 @@ const ReservationContainer = ({reservations}) => {
           name={reservation.name}
           date={reservation.date}
           time={reservation.time}
-          numOfGuest={reservation.number}
+          number={reservation.number}
       />
     })
 
