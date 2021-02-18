@@ -6,8 +6,13 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-
+      reservations: []
     }
+  }
+
+  componentDidMount() {
+    fetchRequests.getAllReservations()
+      .then(data => this.setState({reservations: data.reservations}))
   }
 
   render() {
