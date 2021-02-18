@@ -12,7 +12,9 @@ class App extends Component {
     }
   }
 
-  
+  addReservation = (newReservation) => {
+    this.setState({reservations: [...this.state.reservations, newReservation]})
+  }
 
   componentDidMount() {
     fetchRequests.getAllReservations()
@@ -24,7 +26,7 @@ class App extends Component {
       <div className="App">
         <h1 className='app-title'>Turing Cafe Reservations</h1>
         <div className='resy-form'>
-          <Form />
+          <Form addReservation={this.addReservation}/>
         </div>
         <div className='resy-container'>
           <ReservationContainer reservations={this.state.reservations}/>
