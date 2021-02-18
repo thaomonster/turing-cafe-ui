@@ -38,7 +38,7 @@ class Form extends Component {
   render() {
     return (
       <form>
-        <input 
+        <input
           type='text'
           name='name'
           placeholder='Name'
@@ -63,7 +63,7 @@ class Form extends Component {
           value={this.state.number}
           onChange={event => this.handleChange(event)}
         />
-        <button onClick={event => this.submitReservation(event)}>Make Reservation</button>
+        <button className='reservation-btn' onClick={event => this.submitReservation(event)}>Make Reservation</button>
       </form>
     )
   }
