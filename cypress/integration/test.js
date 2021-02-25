@@ -7,12 +7,25 @@ describe('App', () => {
     cy.get('h1').should('contain', 'Turing Cafe Reservation');
   })
 
-  it('Should have a form section', () => {
-    cy.get('form');
+  it('Should have a form section with 4 inputs', () => {
+    cy.get('form')
+      .get('input')
+      .should('have.length', 4)
+      .and('be.visible')
   })
 
   it('Should contain reservations', () => {
     cy.get('.card').should('have.length', 9);
+  })
+
+  it('Should have a name, date, time and number of guest on reservation card', () => {
+    cy.get('.card').each(card => {
+      cy.get(card)
+        .find('h2')
+        .and('be.visible')
+        .get('p')
+        .and('be.visible')
+    })
   })
 
   it('Should test user flow for making a reservation', () => {
@@ -26,6 +39,6 @@ describe('App', () => {
       .type('8')
       .get('button')
       .click()
-
+      .get('.card').should('have.length', 10)
   })
 })
